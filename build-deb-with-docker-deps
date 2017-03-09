@@ -1,0 +1,22 @@
+#!/bin/bash
+# docker run -v `pwd`:/build-src:ro ubuntu:xenial /bin/bash /build-src/build-deb-with-docker-dep
+
+set -e
+set -x
+
+echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" > /etc/apt/sources.list
+echo "deb http://archive.ubuntu.com/ubuntu xenial-updates main universe" >> /etc/apt/sources.list
+echo "deb http://archive.ubuntu.com/ubuntu xenial-security main universe" >> /etc/apt/sources.list
+apt-get update
+apt-get upgrade -y
+
+apt install -y curl python-dev build-essential python-pip python-setuptools python-virtualenv \
+ curl python3-dev build-essential python3-pip python3-setuptools python3-virtualenv apt-utils \
+ python-all python3-all python3-stdeb software-properties-common
+
+add-apt-repository ppa:syseleven-platform/sys11stack -y
+apt-get update
+
+apt-get install python3-consul
+
+> /tmp/build-deb-with-docker-deps.done
