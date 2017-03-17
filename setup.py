@@ -7,10 +7,7 @@ if not sys.version_info >= (3, 5):
 
 setup(
     name="consul_lib",
-    url="http://www.syseleven.de",
-    version="0.1.0.dev0",
-    maintainer="Cloudstackers",
-    maintainer_email="Cloudstackers <cloudstackers@syseleven.de>",
+    version="0.1.0.dev",
     packages=find_packages(),
     install_requires=[
         "python-consul",
