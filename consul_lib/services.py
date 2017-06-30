@@ -10,7 +10,7 @@ def get_local_checks(con, tags=[]):
     """
 
     if tags:
-        checks = [k for k, v in con.agent.services().items() if v["Tags"] and set(tags) | (set(v["Tags"]))]
+        checks = [k for k, v in con.agent.services().items() if v["Tags"] and set(tags).intersection( (set(v["Tags"])))]
     else:
         checks = con.agent.services().keys()
 
