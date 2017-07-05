@@ -10,7 +10,7 @@ def get_local_checks(con, tags=[]):
     """
 
     if tags:
-        checks = [k for k, v in con.agent.services().items() if v["Tags"] and set(tags).intersection( (set(v["Tags"])))]
+        checks = [k for k, v in con.agent.services().items() if v["Tags"] and set(tags).intersection(set(v["Tags"]))]
     else:
         checks = con.agent.services().keys()
 
@@ -30,9 +30,17 @@ def get_failed_cluster_checks(con, checks):
     failed_checks = {}
     for service in checks:
         for node in con.health.service(service)[1]:
+            tags = node["Service"]["Tags"]
             for check in node["Checks"]:
                 LOG.info("Check %s on %s. Status: %s" % (check["CheckID"], check["Node"], check["Status"]))
                 if check["Status"] != "passing":
-                    failed_checks[check["CheckID"]]=check
+                    if not ignore_maintenance_check(check["CheckID"], tags):
+                        failed_checks[check["CheckID"]]=check
 
     return failed_checks
+
+def ignore_maintenance_check(checkid, tags):
+    if tags and "ignore_maintenance" in tags:
+        if checkid == "_node_maintenance":
+            return True
+
