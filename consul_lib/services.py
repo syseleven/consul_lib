@@ -35,12 +35,12 @@ def get_failed_cluster_checks(con, checks):
                 LOG.info("Check %s on %s. Status: %s" % (check["CheckID"], check["Node"], check["Status"]))
                 if check["Status"] != "passing":
                     if not ignore_maintenance_check(check["CheckID"], tags):
-                        failed_checks[check["CheckID"]]=check
+                        failed_checks[check["CheckID"]] = check
 
     return failed_checks
+
 
 def ignore_maintenance_check(checkid, tags):
     if tags and "ignore_maintenance" in tags:
         if checkid == "_node_maintenance":
             return True
-

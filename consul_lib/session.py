@@ -6,7 +6,6 @@ LOG = logging.getLogger(__name__)
 
 
 class SessionRenewer(threading.Thread):
-
     def __init__(self, session, con, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._session = session
@@ -18,8 +17,8 @@ class SessionRenewer(threading.Thread):
         while not self._finished:
             try:
                 self._con.session.renew(self._session)
-            except:
-                LOG.warn("Unable to renew session.")
+            except Exception:
+                LOG.warning("Unable to renew session.")
                 # We do not want to return on failure, since a leader election
                 # in the consul cluster can cause a failure of renew.
                 # It is accepted, that this code runs until the finished-flag
@@ -31,7 +30,7 @@ class SessionRenewer(threading.Thread):
 
 
 class LockMonitor(threading.Thread):
-
+    """Fires event when lock is lost."""
     def __init__(self, lock, retries=2, retry_time=2, event=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._finished = False
@@ -59,8 +58,8 @@ class LockMonitor(threading.Thread):
                                 retries = 0
                         else:
                             self._lost = False
-                    except:
-                        LOG.warn("Unable to get lock. Trying again.", exc_info=True)
+                    except Exception:
+                        LOG.warning("Unable to get lock. Trying again.", exc_info=True)
                         retries += 1
             if self._lost and self._event:
                 # Firing the event if there is one.

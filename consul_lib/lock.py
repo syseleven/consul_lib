@@ -109,7 +109,7 @@ class Lock:
             LOG.debug("Closing session %s.", self.session)
             try:
                 self._con.session.destroy(self.session)
-            except:
+            except Exception:
                 LOG.debug("Unable to destroy session. Consul not available.")
             self.session = None
         self.locked = False

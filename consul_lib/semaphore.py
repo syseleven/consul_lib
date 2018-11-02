@@ -117,7 +117,7 @@ class Semaphore:
         idx, data = self._con.kv.get(self.lock_path)
         if not data:
             False
-        value = json.loads(data["Values"])
+        value = json.loads(data["Value"].decode())
         # Be a bit more careful and check if Holders exists in value.
         # A KeyError at this point would prevent a cleanup.
         return "Holders" in value and self.session in value["Holders"]
