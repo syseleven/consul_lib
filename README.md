@@ -6,7 +6,7 @@ This library contains
 
 # Lock
 
-Using [Consul Lock](https://www.consul.io/docs/guides/leader-election.html), you can make sure that only one node in you consul cluster is running a certain piece of code at the same time.
+Using [Consul Lock](https://www.consul.io/docs/guides/leader-election.html), you can make sure that only one node in your consul cluster is running a certain piece of code at the same time.
 
 Example:
 
@@ -26,7 +26,7 @@ if __name__ == '__main__':
 
 # Semaphore
 
-With a [Consul Semaphore](https://www.consul.io/docs/guides/semaphore.html) you can choose how many instances of some code can run in any given moment in you consul cluster.
+With a [Consul Semaphore](https://www.consul.io/docs/guides/semaphore.html) you can choose how many instances of some code can run in any given moment in your consul cluster.
 
 Example:
 
