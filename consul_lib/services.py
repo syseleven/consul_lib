@@ -44,3 +44,4 @@ def ignore_maintenance_check(checkid, tags):
     if tags and "ignore_maintenance" in tags:
         if checkid == "_node_maintenance":
             return True
+    return False
