@@ -1,0 +1,6 @@
+#!/usr/bin/make -f
+
+export PBR_VERSION=0.1.0
+
+%:
+	dh $@ --with python3,systemd --buildsystem=pybuild

@@ -1,0 +1,48 @@
+consul-lib (0.1.5-0+syseleven1) xenial; urgency=medium
+
+  * Version update
+
+ -- Dennis Kuhn <d.kuhn@syseleven.de>  Wed, 05 Jul 2017 17:01:00 +0100
+consul-lib (0.1.4-0+syseleven1) xenial; urgency=medium
+
+  * Version update
+
+ -- Dennis Kuhn <d.kuhn@syseleven.de>  Tue, 04 Jul 2017 17:01:00 +0100
+consul-lib (0.1.3-0+syseleven1) xenial; urgency=medium
+
+  * Version update
+
+ -- Dennis Kuhn <d.kuhn@syseleven.de>  Mon, 03 Jul 2017 17:01:00 +0100
+consul-lib (0.1.2-0+syseleven1) xenial; urgency=medium
+
+  * Version update
+
+ -- Dennis Kuhn <d.kuhn@syseleven.de>  Thu, 09 Mar 2017 17:01:00 +0100
+consul-lib (0.1.1-0+syseleven1) xenial; urgency=medium
+
+  * Version update
+
+ -- Dennis Kuhn <d.kuhn@syseleven.de>  Thu, 09 Mar 2017 17:01:00 +0100
+consul-lib (0.1.0-0+syseleven1) xenial; urgency=medium
+
+  * Rename package to consul-lib
+
+ -- Dennis Kuhn <d.kuhn@syseleven.de>  Thu, 09 Mar 2017 17:01:00 +0100
+
+consul-lock (0.1.0-0+syseleven3) xenial; urgency=medium
+
+  * Fixed packaging error
+
+ -- Christoph Glaubitz <c.glaubitz@syseleven.de>  Mon, 21 Nov 2016 17:01:00 +0100
+
+consul-lock (0.1.0-0+syseleven2) xenial; urgency=medium
+
+  * Removed unneeded install file
+
+ -- Christoph Glaubitz <c.glaubitz@syseleven.de>  Mon, 21 Nov 2016 16:54:00 +0100
+
+consul-lock (0.1.0-0+syseleven1) xenial; urgency=medium
+
+  * Initial build of this package for Ubuntu 16.04
+
+ -- Christoph Glaubitz <c.glaubitz@syseleven.de>  Mon, 21 Nov 2016 15:28:00 +0100
