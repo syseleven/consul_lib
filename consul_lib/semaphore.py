@@ -116,7 +116,7 @@ class Semaphore:
             return False
         idx, data = self._con.kv.get(self.lock_path)
         if not data:
-            False
+            return False
         value = json.loads(data["Value"].decode())
         # Be a bit more careful and check if Holders exists in value.
         # A KeyError at this point would prevent a cleanup.

@@ -110,6 +110,7 @@ You need docker-compose for the integration tests:
 $ docker-compose run --rm integration_tests_py35
 $ docker-compose run --rm integration_tests_py36
 $ docker-compose run --rm integration_tests_py37
+$ docker-compose run --rm integration_tests_py38
 
 # For debugging purposes, you can run bash
 $ docker-compose run --rm integration_tests_py37 bash
