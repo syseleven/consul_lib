@@ -1,4 +1,4 @@
-# Consul Lib [![Build Status](https://travis-ci.org/syseleven/consul_lib.svg?branch=master)](https://travis-ci.org/syseleven/consul_lib)
+# Consul Lib
 
 This library contains
 - A Python implementation of [Consul Semaphore](https://www.consul.io/docs/guides/semaphore.html) and [Consul Lock](https://www.consul.io/docs/guides/leader-election.html) with session renewal in a background thread.
