@@ -5,6 +5,8 @@ jobs:
   Syntax-Lint:
     runs-on: ubuntu-latest
     steps:
+      - name: Update python pip3
+        run: "sudo apt update && sudo apt install --only-upgrade python3-pip && sudo apt remove python3-packaging"
       - name: Install python prerequisites
         run: "sudo pip3 install tox"
       - name: Checkout repository
@@ -15,6 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
+      - name: Update python pip3
+        run: "sudo apt update && sudo apt install --only-upgrade python3-pip && sudo apt remove python3-packaging"
       - name: Install python prerequisites
         run: "sudo pip3 install tox"
       - name: Checkout repository
