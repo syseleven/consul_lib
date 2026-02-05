@@ -40,13 +40,14 @@ class Lock:
     def reset_session(self):
         self.session = None
 
-    def acquire(self, *, blocking=True, wait=None):
+    def acquire(self, *, blocking=True, wait=None, is_daemon=False):
         """
         :param blocking: Wait for someone else or release the Lock. Default True.
                          In long running programs this is the best solution.
                          Using consul from a web application should not block, but warn.
                          Take care to .close() when you are done.
         :param wait: Maximum duration to wait for a key change (e.g. 10s)
+        :paparm is_daemon: Flag to allow consul session renwewal to be run as a daemon. Default False
         """
         # Create a session with a ttl of 60s.
         # So it is possible to find broken clients.
@@ -63,7 +64,7 @@ class Lock:
                 self.session_renewer._session = self.session
             else:
                 LOG.debug("Starting session_renewer.")
-                self.session_renewer = SessionRenewer(self.session, self._con)
+                self.session_renewer = SessionRenewer(self.session, self._con, is_daemon=is_daemon)
                 self.session_renewer.start()
         while not self._con.kv.put(str(self._path), self._payload, acquire=self.session):
             # getting the current index …

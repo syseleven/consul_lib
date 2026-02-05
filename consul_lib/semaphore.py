@@ -10,7 +10,7 @@ LOG = logging.getLogger(__name__)
 
 class Semaphore:
 
-    def __init__(self, con, prefix, size, *, session=None):
+    def __init__(self, con, prefix, size, is_daemon=False, *, session=None):
         """
         Context manager to use consul session to create a semaphore.
         Have a look at: https://www.consul.io/docs/guides/semaphore.html
@@ -35,7 +35,7 @@ class Semaphore:
         # If a Holder fails, without cleanup, it would stuck in Holders.
         # With a session with, ttl and renew of this session, broken
         # clients can be detected and removed from Holders.
-        self.session_renewer = SessionRenewer(self.session, con)
+        self.session_renewer = SessionRenewer(self.session, con, is_daemon=is_daemon)
         self.session_renewer.start()
         self._con = con
         self.prefix = Path(prefix)

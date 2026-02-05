@@ -6,11 +6,12 @@ LOG = logging.getLogger(__name__)
 
 
 class SessionRenewer(threading.Thread):
-    def __init__(self, session, con, *args, **kwargs):
+    def __init__(self, session, con, is_daemon=False, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._session = session
         self._con = con
         self._finished = False
+        self.daemon = is_daemon
 
     def run(self):
         """ Renew the session in a 5 second interval """
@@ -31,7 +32,7 @@ class SessionRenewer(threading.Thread):
 
 class LockMonitor(threading.Thread):
     """Fires event when lock is lost."""
-    def __init__(self, lock, retries=2, retry_time=2, event=None, *args, **kwargs):
+    def __init__(self, lock, retries=2, retry_time=2, event=None, is_daemon=False, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._finished = False
         self._lock = lock
@@ -39,6 +40,7 @@ class LockMonitor(threading.Thread):
         self._retries = retries
         self._event = event
         self._retry_time = retry_time
+        self.daemon = is_daemon
 
     def run(self):
         retries = 0
