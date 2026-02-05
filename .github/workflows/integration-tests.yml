@@ -17,4 +17,4 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Perform integration tests for python version ${{ matrix.python_version }}
-        run: "cd ${{ github.workspace }} && docker-compose run --rm integration_tests_py${{ matrix.python_version }}"
+        run: "cd ${{ github.workspace }} && docker compose run --rm integration_tests_py${{ matrix.python_version }}"
