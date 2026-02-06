@@ -1,5 +1,5 @@
 ARG PYTHON_VERSION
-FROM python:$PYTHON_VERSION-alpine
+FROM python:${PYTHON_VERSION}-alpine
 
 RUN apk add bash
 RUN pip install tox
