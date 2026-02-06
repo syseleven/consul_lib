@@ -8,11 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python_version: [35, 36, 37, 38, 39]
+        python_version: [35, 36, 38, 310, 312, 314]
     steps:
-      - name: Install python prerequisites
-        run: "sudo pip3 install docker-compose"
+      - name: Set up Docker Compose
+        uses: docker/setup-compose-action@v1
+        with:
+          version: latest
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v6
       - name: Perform integration tests for python version ${{ matrix.python_version }}
-        run: "cd ${{ github.workspace }} && docker-compose run --rm integration_tests_py${{ matrix.python_version }}"
+        run: "cd ${{ github.workspace }} && docker compose run --rm integration_tests_py${{ matrix.python_version }}"
