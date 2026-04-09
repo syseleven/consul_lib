@@ -8,7 +8,7 @@ LOG = logging.getLogger(__name__)
 
 class Lock:
 
-    def __init__(self, con, prefix, *, ttl: int=60, checks=None, session=None, payload='{"state": "done"}'):
+    def __init__(self, con, prefix, *, ttl: int = 60, checks=None, session=["serfHealth"], payload='{"state": "done"}'):
         """
         Context manager to use consul session to create a mutex.
         Have a look at: https://www.consul.io/docs/guides/leader-election.html

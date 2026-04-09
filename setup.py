@@ -7,7 +7,7 @@ if not sys.version_info >= (3, 5):
 
 setup(
     name="consul_lib",
-    version="0.1.9",
+    version="0.2.0",
     maintainer="Syseleven Cloudstackers",
     maintainer_email="cloudstackers@syseleven.de",
     url="https://github.com/syseleven/consul_lib",
