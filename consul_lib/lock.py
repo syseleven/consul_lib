@@ -8,7 +8,7 @@ LOG = logging.getLogger(__name__)
 
 class Lock:
 
-    def __init__(self, con, prefix, *, session=None, payload='{"state": "done"}'):
+    def __init__(self, con, prefix, *, ttl: int = 60, checks=["serfHealth"], session=None, payload='{"state": "done"}'):
         """
         Context manager to use consul session to create a mutex.
         Have a look at: https://www.consul.io/docs/guides/leader-election.html
@@ -17,6 +17,8 @@ class Lock:
 
         :param con: python-consul consul.Consul.
         :param prefix: prefix to use to. E.g. services/my-service.
+        :param ttl: consul session ttl. Default 60s.
+        :param checks: list of consul checks. E.g. serfHealth.
         :param session: create a new Lock object, but reuse session.
         :param payload: content of the lock during time of lock. Could be anything human readable.
         """
@@ -24,7 +26,8 @@ class Lock:
         self._prefix = Path(prefix)
         self._path = self._prefix / ".lock"
         self._payload = payload
-        self._ttl = 60
+        self._ttl = ttl
+        self._checks = checks
         if session:
             self.session = session
         else:
@@ -53,7 +56,7 @@ class Lock:
         # So it is possible to find broken clients.
         if not self.session:
             LOG.debug("Starting session.")
-            self.session = self._con.session.create(ttl=self._ttl)
+            self.session = self._con.session.create(ttl=self._ttl, checks=self._checks)
             # Kick off a Thread to periodically renew the session
             # Reason:
             # During acquire, a prefix/session is acquire=session.
