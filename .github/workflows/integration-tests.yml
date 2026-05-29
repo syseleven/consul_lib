@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python_version: [35, 36, 38, 310, 312, 314]
+        python_version: [36, 38, 310, 312, 314]
     steps:
       - name: Set up Docker Compose
         uses: docker/setup-compose-action@v1
